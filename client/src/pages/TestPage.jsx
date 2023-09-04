@@ -10,8 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import RecipeCard from "../components/RecipeCard";
 import useRecipeAPI, { fetchTypes } from "../hooks/useRecipeAPI";
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import Page from "../components/Page";
 
 export default function TestPage() {
     const recipes = useRecipeAPI({
@@ -31,14 +30,14 @@ export default function TestPage() {
     ))
 
     return (
-        <>
+        <Page>
             <CssBaseline />
             <Container sx={{ py: 8 }} maxWidth="lg">
                 <Grid container spacing={4}>
                     {items}
                 </Grid>
             </Container>
-        </>
+        </Page>
     );
 }
 

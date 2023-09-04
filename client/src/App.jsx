@@ -11,10 +11,7 @@ function App() {
     return (
         <div className="App">
 			<ThemeProvider theme={defaultTheme}>
-				<Header/>
-				<NavBar />
 				<AppRoutes />
-				<Footer />
 			</ThemeProvider>
         </div>
     );
