@@ -13,11 +13,27 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useUserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 import { useState } from "react";
 
-
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+const validateEmail = (email) => {
+    if(email.length < 1)
+        return [false, "An email is required"];
+    if(!emailRegex.test(email))
+        return [false, "Email failed regular expression match"];
+
+    return [true, ""]
+}
+
+const validatePassword = (password) => {
+    if(password.length < 1)
+        return [false, "A password is required"];
+    if(password.length < 5)
+        return [false, "Password must contain at least 5 letters"];
+
+    return [true, ""]
+}
 
 export default function SignInForm() {
     const [emailState, setEmailState] = useState({
@@ -33,24 +49,6 @@ export default function SignInForm() {
     const { handleUpdateUser } = useUserContext();
     const navigate = useNavigate();
 
-    const validateEmail = (email) => {
-        if(email.length < 1)
-            return [false, "An email is required"];
-        if(!emailRegex.test(email))
-            return [false, "Email failed regular expression match"];
-
-        return [true, ""]
-    }
-
-    const validatePassword = (password) => {
-        if(password.length < 1)
-            return [false, "A password is required"];
-        if(password.length < 5)
-            return [false, "Password must contain at least 5 letters"];
-
-        return [true, ""]
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -65,8 +63,7 @@ export default function SignInForm() {
             pass: (passwordState.isValid && emailState.message.length > 0)
         })
 
-        if((emailState.isValid && emailState.message.length > 0) && 
-           (passwordState.isValid && emailState.message.length > 0)) {
+        if(emailValid  && passwordValid) {
             handleUpdateUser({email:data.get('email')});
             navigate("/");
         }

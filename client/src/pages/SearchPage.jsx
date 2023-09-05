@@ -23,20 +23,25 @@ export default function SearchPage() {
         </Grid>
     ))
 
+    if(searchResult) {
+        return (
+            <Page>
+            <CssBaseline />
+            <Container sx={{ py: 8 }} maxWidth="lg">
+                <Grid container spacing={4}>
+                    {searchResult}
+                </Grid>
+            </Container>
+        </Page>
+        )
+    }
+
     return (
         <Page>
             <CssBaseline />
-            <Container sx={{ py: 8 }} maxWidth="lg">
-                {
-                    searchResult? 
-                    <Grid container spacing={4}>
-                        {searchResult}
-                    </Grid> : 
-                    <Typography component="h1" variant="h4" color="inherit">
-                        Nothing found...
-                    </Typography>
-                }
-            </Container>
+            <Typography component="h1" variant="h4" color="inherit">
+                Nothing found...
+            </Typography>
         </Page>
     );
 }

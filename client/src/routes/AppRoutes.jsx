@@ -6,6 +6,7 @@ import TestPage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import ProtectedRoute from "./ProtectedRoute";
 import SearchPage from "../pages/SearchPage";
+import ProfilePage from "../pages/ProfilePage";
 
 function AppRoutes(props) {
     return (
@@ -21,6 +22,7 @@ function AppRoutes(props) {
                 <Route path="/account/signup" element={<CreateAccountForm />} />
             </Route>
             <Route path="/search/:q" element={<SearchPage />} />
+            <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     );

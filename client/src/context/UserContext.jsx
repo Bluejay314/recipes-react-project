@@ -3,10 +3,13 @@ import React, { useState, useContext } from "react";
 const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState({email: "cat@gmail.com"});
+    const [currentUser, setCurrentUser] = useState({
+        email: "",
+        favourites: []
+    });
 
     const handleUpdateUser = (user) => {
-        setCurrentUser(user);
+        setCurrentUser({...currentUser, ...user});
     };
 
     return (

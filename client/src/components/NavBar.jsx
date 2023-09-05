@@ -12,6 +12,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import SearchBar from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const menuId = "primary-search-account-menu";
 const mobileMenuId = "primary-search-account-menu-mobile";
@@ -22,6 +23,7 @@ export default function NavBar() {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const navigate = useNavigate();
 
     const handleProfileMenuOpen = (event) => setAnchorEl(event.currentTarget);
     const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
@@ -113,7 +115,7 @@ export default function NavBar() {
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            onClick={() => navigate("/profile")}
                             color="inherit"
                         >
                             <AccountCircle />
