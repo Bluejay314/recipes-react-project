@@ -1,13 +1,18 @@
-import { useData } from "../hooks/useRecipeAPI"
-import { fetchTypes } from "../hooks/useRecipeAPI";
+import * as React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Page from "../components/Page";
 
 export default function HomePage() {
-    const meal = useData({ type: fetchTypes.search, query:"chocolate" });
 
     return (
-        <div>
-            <h1>HomePage</h1>
-        </div>
-        
-    )
+        <Page>
+            <CssBaseline />
+            <Container sx={{ py: 8 }} maxWidth="lg">
+                <Grid container spacing={4}>
+                </Grid>
+            </Container>
+        </Page>
+    );
 }

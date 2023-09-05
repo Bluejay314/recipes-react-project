@@ -5,8 +5,10 @@ import NavBar from "./NavBar";
 export default function Page({ children }) {
     return (
         <div className="Page">
-            <Header />
-            <NavBar />
+            <div>
+                <Header />
+                <NavBar />
+            </div>
             {children}
             <Footer />
         </div>

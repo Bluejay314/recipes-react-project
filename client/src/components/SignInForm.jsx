@@ -20,13 +20,11 @@ import { useState } from "react";
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 export default function SignInForm() {
-    let userEmail = useRef(null);
     const [emailState, setEmailState] = useState({
         isValid:true,
         message: ""
     });
 
-    let userPassword = useRef(null);
     const [passwordState, setPasswordState] = useState({
         isValid:true,
         message: ""
@@ -40,31 +38,36 @@ export default function SignInForm() {
             return [false, "An email is required"];
         if(!emailRegex.test(email))
             return [false, "Email failed regular expression match"];
+
+        return [true, ""]
     }
 
     const validatePassword = (password) => {
         if(password.length < 1)
             return [false, "A password is required"];
-        if(password === userEmail.current.value)
-            return [false, "Password must not match email address"];
         if(password.length < 5)
             return [false, "Password must contain at least 5 letters"];
+
+        return [true, ""]
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const [emailValid, emailMessage] = validateEmail(userEmail.current.value);
+        const data = new FormData(event.currentTarget);
+
+        const [emailValid, emailMessage] = validateEmail(data.get('email'));
         setEmailState({isValid: emailValid, message: emailMessage});
 
-        const [passwordValid, passwordMessage] = validatePassword(userPassword.current.value);
+        const [passwordValid, passwordMessage] = validatePassword(data.get('password'));
         setPasswordState({isValid: passwordValid, message: passwordMessage})
         console.log({
-            email:emailMessage,
-            pass: passwordMessage
+            email:(emailState.isValid && emailState.message.length > 0),
+            pass: (passwordState.isValid && emailState.message.length > 0)
         })
 
-        if(emailState.isValid && passwordState.isValid) {
-            handleUpdateUser({email:userEmail.current.value});
+        if((emailState.isValid && emailState.message.length > 0) && 
+           (passwordState.isValid && emailState.message.length > 0)) {
+            handleUpdateUser({email:data.get('email')});
             navigate("/");
         }
     };
@@ -93,7 +96,6 @@ export default function SignInForm() {
                     >
                         <TextField
                             margin="normal"
-                            inputRef={userEmail}
                             required
                             fullWidth
                             id="email"
@@ -106,7 +108,6 @@ export default function SignInForm() {
                         />
                         <TextField
                             margin="normal"
-                            inputRef={userPassword}
                             required
                             fullWidth
                             name="password"

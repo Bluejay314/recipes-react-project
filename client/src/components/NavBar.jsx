@@ -85,7 +85,7 @@ export default function NavBar() {
 
     return (
         <Box>
-            <AppBar position="static" sx={{ pr: "2rem" }}>
+            <AppBar position="sticky" sx={{ pr: "2rem" }}>
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -117,6 +117,14 @@ export default function NavBar() {
                             color="inherit"
                         >
                             <AccountCircle />
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="div"
+                                sx={{ display: { xs: "none", sm: "block" }, pl: 2 }}
+                                >
+                                MY PROFILE
+                        </Typography>
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: "flex", md: "none" } }}>
