@@ -4,13 +4,22 @@ import SignInForm from "../components/SignInForm";
 import CreateAccountForm from "../components/CreateAccountForm";
 import TestPage from "../pages/TestPage";
 import LoginPage from "../pages/LoginPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes(props) {
     return (
         <Routes>
-            <Route index element={<TestPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<CreateAccountForm />} />
+            <Route path="/" element={
+                <ProtectedRoute redirectPath = "/account/login">
+                    <TestPage />
+                </ProtectedRoute>
+            } />
+
+
+            <Route path="/account" element={<LoginPage />}>
+                <Route path="/account/login" element={<SignInForm />} />
+                <Route path="/account/signup" element={<CreateAccountForm />} />
+            </Route>
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     );

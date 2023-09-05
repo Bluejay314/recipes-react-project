@@ -100,8 +100,9 @@ export default function CreateAccountForm() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                Already have an account?
+                <Link href="/account/login" variant="body2">
+                   {" Sign in"}
                 </Link>
               </Grid>
             </Grid>

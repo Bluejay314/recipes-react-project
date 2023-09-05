@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 
-export default function BackgroundImage({ image, opacity, children }) {
+export default function BackgroundImage({ image, opacity }) {
     return (
         <Box sx={{
             position: "absolute",
@@ -15,7 +15,6 @@ export default function BackgroundImage({ image, opacity, children }) {
             backgroundImage: image,
         }}>
             <Box sx={{position: "absolute", inset: 0, backgroundColor: `rgba(0,0,0,${opacity})`}}/>
-            {children}
         </Box>
     )
 }
