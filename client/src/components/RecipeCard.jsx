@@ -59,7 +59,7 @@ export default function RecipeCard({
                         component="img"
                         height="600"
                         image={image}
-                        alt="green iguana"
+                        alt="recipe thumbnail"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
