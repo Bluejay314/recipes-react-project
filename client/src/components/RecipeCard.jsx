@@ -91,6 +91,7 @@ export default function RecipeCard({
                             {description}
                         </Typography>
                     </CardContent>
+                    </CardActionArea>
                     <CardActions disableSpacing>
                         <IconButton sx={{color:favouriteIconColour}} onClick={(e) => handleAddToFavourites(e)}>
                             <FavoriteIcon />
@@ -99,7 +100,7 @@ export default function RecipeCard({
                             <ShareIcon />
                         </IconButton>
                     </CardActions>
-                </CardActionArea>
+                
             </Card>
             <Modal
                 open={open}
