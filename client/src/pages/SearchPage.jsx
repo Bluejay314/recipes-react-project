@@ -19,6 +19,7 @@ export default function SearchPage() {
                 image={recipe["strMealThumb"]}
                 description={recipe["strTags"]}
                 category={recipe["strCategory"]}
+                instructions={recipe["strInstructions"]}
             />
         </Grid>
     ))

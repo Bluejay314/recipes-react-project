@@ -27,7 +27,7 @@ export default function RecipeCard({
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const instructionItems = instructions.split("\n").map((step, i) => (
+    const instructionItems = instructions.split("\\n").map((step, i) => (
         <Box sx={{textAlign:"left"}}>
             <p><strong>Step {i}</strong></p>
             <p>{step}</p>
@@ -63,7 +63,7 @@ export default function RecipeCard({
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {category}
+                            {title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {description}
@@ -132,7 +132,7 @@ export default function RecipeCard({
                     </Card>
                     <CardContent>
                     <h3>Instructions</h3>
-                    {instructionItems}
+                    {instructions}
                     </CardContent>
                 </Box>
             </Modal>
